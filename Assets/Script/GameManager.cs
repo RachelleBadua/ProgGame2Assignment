@@ -14,8 +14,23 @@ public class GameManager : MonoBehaviour
     
     public void Awake()
     {
-        Instance = this;
-        DontDestroyOnLoad(Instance);
+        // If there is an instance, and it's not me, delete myself. 
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+        //Instance = this;
+        //DontDestroyOnLoad(Instance);
+        //Scoreboard = TotalScore + Score;
+        //ScoreText.text = "Your Score: " + Scoreboard;
+    }
+
+    public void Start()
+    {
         Scoreboard = TotalScore + Score;
         ScoreText.text = "Your Score: " + Scoreboard;
     }
